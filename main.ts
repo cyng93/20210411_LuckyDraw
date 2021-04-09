@@ -17,7 +17,22 @@ function 顯示心跳動畫 (心跳次數: number) {
     }
 }
 input.onButtonPressed(Button.A, function () {
+    basic.showNumber(抽獎名單.length)
+})
+input.onButtonPressed(Button.AB, function () {
     嘗試從抽獎名單中抽一名中獎者()
+})
+radio.onReceivedString(function (receivedString) {
+    basic.showArrow(ArrowNames.South)
+    basic.clearScreen()
+    if (receivedString == "go") {
+        嘗試從抽獎名單中抽一名中獎者()
+    }
+})
+input.onButtonPressed(Button.B, function () {
+    for (let index = 0; index <= 抽獎名單.length - 1; index++) {
+        basic.showString("" + (抽獎名單[index]))
+    }
 })
 function 嘗試從抽獎名單中抽一名中獎者 () {
     if (抽獎名單.length != 0) {
@@ -32,4 +47,6 @@ function 嘗試從抽獎名單中抽一名中獎者 () {
 let 中獎者 = ""
 let 中獎的索引值 = 0
 let 抽獎名單: string[] = []
+radio.setGroup(99)
 抽獎名單 = ["a", "b", "c", "d", "e", "f"]
+basic.showString("Total:" + convertToText(抽獎名單.length))
